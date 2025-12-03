@@ -1,0 +1,14 @@
+{
+    "name": "zama-bounty-hub",
+    "private": true,
+    "scripts": {
+        "dev": "npm run dev --prefix playground",
+        "playground": "npm run dev --prefix playground",
+        "automation": "npm start --prefix automation",
+        "test:all": "npm test --prefix automation"
+    },
+    "workspaces": [
+        "playground",
+        "automation"
+    ]
+}
