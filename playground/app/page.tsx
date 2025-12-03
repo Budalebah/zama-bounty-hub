@@ -2,25 +2,42 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Lock, Calculator, Scale, ShieldCheck, Key, Coins, Gavel, Vote, Download, Terminal, Play } from "lucide-react";
+import { Lock, Calculator, Scale, ShieldCheck, Key, Coins, Gavel, Vote, Download, Terminal, Play, Copy } from "lucide-react";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { FHEPlayground } from "@/components/FHEPlayground";
+import { toast } from "sonner";
 
 const templates = [
-  { id: 'fhevm-example-encrypted-value', title: 'Encrypted Value', description: 'Store and retrieve encrypted integers.', complexity: 'Basic', icon: Lock },
-  { id: 'fhevm-example-arithmetic', title: 'FHE Arithmetic', description: 'Perform encrypted addition and subtraction.', complexity: 'Basic', icon: Calculator },
-  { id: 'fhevm-example-equality', title: 'FHE Equality', description: 'Check if two encrypted values are equal.', complexity: 'Basic', icon: Scale },
-  { id: 'fhevm-example-access-control', title: 'Access Control', description: 'Manage permissions with FHE.allow.', complexity: 'Security', icon: ShieldCheck },
-  { id: 'fhevm-example-reencryption', title: 'User Decryption', description: 'Users decrypt their own data (Re-encryption).', complexity: 'Decryption', icon: Key },
-  { id: 'fhevm-example-erc20', title: 'Confidential ERC20', description: 'Token with encrypted balances and transfers.', complexity: 'Advanced', icon: Coins },
-  { id: 'fhevm-example-blind-auction', title: 'Blind Auction', description: 'Highest bid is secret until the end.', complexity: 'Advanced', icon: Gavel },
-  { id: 'fhevm-example-voting', title: 'Confidential Voting', description: 'Encrypted vote aggregation.', complexity: 'Advanced', icon: Vote },
+  { id: 'fhevm-example-encrypted-value', title: 'Encrypted Value', description: 'Store and retrieve encrypted integers.', complexity: 'Basic', icon: Lock, templateName: 'EncryptedValue' },
+  { id: 'fhevm-example-arithmetic', title: 'FHE Arithmetic', description: 'Perform encrypted addition and subtraction.', complexity: 'Basic', icon: Calculator, templateName: 'FHEArithmetic' },
+  { id: 'fhevm-example-equality', title: 'FHE Equality', description: 'Check if two encrypted values are equal.', complexity: 'Basic', icon: Scale, templateName: 'FHEEquality' },
+  { id: 'fhevm-example-access-control', title: 'Access Control', description: 'Manage permissions with FHE.allow.', complexity: 'Security', icon: ShieldCheck, templateName: 'FHEAccessControl' },
+  { id: 'fhevm-example-reencryption', title: 'User Decryption', description: 'Users decrypt their own data (Re-encryption).', complexity: 'Decryption', icon: Key, templateName: 'FHEReencryption' },
+  { id: 'fhevm-example-erc20', title: 'Confidential ERC20', description: 'Token with encrypted balances and transfers.', complexity: 'Advanced', icon: Coins, templateName: 'FHEERC20' },
+  { id: 'fhevm-example-blind-auction', title: 'Blind Auction', description: 'Highest bid is secret until the end.', complexity: 'Advanced', icon: Gavel, templateName: 'FHEBlindAuction' },
+  { id: 'fhevm-example-voting', title: 'Confidential Voting', description: 'Encrypted vote aggregation.', complexity: 'Advanced', icon: Vote, templateName: 'FHEVoting' },
 ];
 
 export default function Home() {
   const [hoveredCard, setHoveredCard] = useState<string | null>(null);
+
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const handleCopyCommand = (templateName: string) => {
+    const command = `npx ts-node src/create-fhevm-example.ts my-${templateName.toLowerCase()} --template ${templateName}`;
+    navigator.clipboard.writeText(command);
+    toast.success("Command copied to clipboard!", {
+      description: `Run this in your terminal to create the project.`,
+      icon: <Terminal className="w-4 h-4" />,
+    });
+  };
 
   return (
     <main className="min-h-screen bg-background text-foreground overflow-hidden relative selection:bg-primary selection:text-primary-foreground">
@@ -41,10 +58,10 @@ export default function Home() {
             Build confidential dApps in seconds. Explore templates, simulate FHE logic, and download ready-to-deploy projects.
           </p>
           <div className="flex justify-center gap-4">
-            <Button size="lg" className="gap-2 shadow-[0_0_20px_-5px_rgba(255,215,0,0.5)]">
+            <Button size="lg" className="gap-2 shadow-[0_0_20px_-5px_rgba(255,215,0,0.5)]" onClick={() => scrollToSection('templates')}>
               <Terminal className="w-4 h-4" /> Start Building
             </Button>
-            <Button size="lg" variant="outline" className="gap-2">
+            <Button size="lg" variant="outline" className="gap-2" onClick={() => scrollToSection('simulation')}>
               <Play className="w-4 h-4" /> Try Simulation
             </Button>
           </div>
@@ -52,7 +69,7 @@ export default function Home() {
       </section>
 
       {/* Templates Grid */}
-      <section className="px-4 pb-32 max-w-7xl mx-auto z-10 relative">
+      <section id="templates" className="px-4 pb-32 max-w-7xl mx-auto z-10 relative scroll-mt-20">
         <div className="flex items-center justify-between mb-8">
           <h2 className="text-2xl font-bold">Featured Templates</h2>
           <Button variant="ghost" className="text-muted-foreground hover:text-white">View All</Button>
@@ -92,8 +109,12 @@ export default function Home() {
                   </div>
                 </CardContent>
                 <CardFooter>
-                  <Button className="w-full gap-2" variant={hoveredCard === template.id ? "default" : "outline"}>
-                    <Download className="w-4 h-4" /> Download
+                  <Button
+                    className="w-full gap-2"
+                    variant={hoveredCard === template.id ? "default" : "outline"}
+                    onClick={() => handleCopyCommand(template.templateName)}
+                  >
+                    <Copy className="w-4 h-4" /> Copy Command
                   </Button>
                 </CardFooter>
               </Card>
@@ -103,7 +124,7 @@ export default function Home() {
       </section>
 
       {/* Simulation Section */}
-      <section className="px-4 pb-32 max-w-4xl mx-auto z-10 relative">
+      <section id="simulation" className="px-4 pb-32 max-w-4xl mx-auto z-10 relative scroll-mt-20">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold mb-4">Understand the Magic</h2>
           <p className="text-muted-foreground">
