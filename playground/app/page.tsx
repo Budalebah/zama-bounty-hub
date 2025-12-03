@@ -136,7 +136,7 @@ export default function Home() {
 
       {/* Footer */}
       <footer className="py-8 text-center text-sm text-muted-foreground border-t border-white/5">
-        <p>Built by <span className="text-primary font-bold">HALO</span></p>
+        <p>Built by <a href="https://x.com/budavlebac1" target="_blank" rel="noopener noreferrer" className="text-primary font-bold hover:underline">HALO</a></p>
       </footer>
     </main>
   );
