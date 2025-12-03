@@ -34,9 +34,6 @@ export default function Home() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <div className="inline-block mb-4 px-3 py-1 rounded-full border border-white/10 bg-white/5 text-xs font-mono text-primary">
-            v0.1.0 • Zama Bounty Hub
-          </div>
           <h1 className="text-5xl md:text-7xl font-bold tracking-tighter mb-6 bg-clip-text text-transparent bg-gradient-to-b from-white to-white/50">
             Zama FHEVM <span className="text-primary">Playground</span>
           </h1>
@@ -115,6 +112,11 @@ export default function Home() {
         </div>
         <FHEPlayground />
       </section>
+
+      {/* Footer */}
+      <footer className="py-8 text-center text-sm text-muted-foreground border-t border-white/5">
+        <p>Built by <span className="text-primary font-bold">HALO</span></p>
+      </footer>
     </main>
   );
 }
