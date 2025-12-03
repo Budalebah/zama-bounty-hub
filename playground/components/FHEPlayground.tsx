@@ -34,6 +34,13 @@ export function FHEPlayground() {
         setDecryptedResult(null);
     };
 
+    // Helper to generate a deterministic "fake" hash based on the value
+    // so it looks like a real ciphertext but is consistent
+    const getFakeHash = (val: number) => {
+        const hash = Math.abs(Math.sin(val + 1) * 10000).toString(16).substring(2, 8);
+        return `0x${hash}...`;
+    };
+
     return (
         <Card className="w-full max-w-2xl mx-auto bg-black/40 border-white/10 backdrop-blur-md p-8">
             <div className="flex flex-col gap-8">
@@ -70,9 +77,9 @@ export function FHEPlayground() {
                         >
                             <div className="w-24 text-sm text-muted-foreground">2. Compute</div>
                             <div className="flex items-center gap-2 bg-white/5 p-4 rounded-lg border border-white/10 flex-1 overflow-x-auto">
-                                <div className="flex items-center gap-2 text-yellow-500 font-mono">
+                                <div className="flex items-center gap-2 text-yellow-500 font-mono text-sm" title={`Encrypted value of ${input}`}>
                                     <Lock className="w-4 h-4" />
-                                    <span>[{input}]</span>
+                                    <span>{getFakeHash(input)}</span>
                                 </div>
 
                                 {operations.map((op, i) => (
@@ -83,9 +90,9 @@ export function FHEPlayground() {
                                         className="flex items-center gap-2"
                                     >
                                         <Plus className="w-4 h-4 text-muted-foreground" />
-                                        <div className="flex items-center gap-2 text-yellow-500 font-mono">
+                                        <div className="flex items-center gap-2 text-yellow-500 font-mono text-sm" title={`Encrypted value of ${op}`}>
                                             <Lock className="w-4 h-4" />
-                                            <span>[{op}]</span>
+                                            <span>{getFakeHash(op)}</span>
                                         </div>
                                     </motion.div>
                                 ))}
