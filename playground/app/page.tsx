@@ -31,10 +31,17 @@ export default function Home() {
   };
 
   const handleCopyCommand = (templateName: string) => {
-    const command = `npx ts-node src/create-fhevm-example.ts my-${templateName.toLowerCase()} --template ${templateName}`;
+    const command = `# Clone the Zama FHEVM Example Hub
+git clone https://github.com/Budalebah/zama-bounty-hub.git
+cd zama-bounty-hub/automation
+npm install
+
+# Generate your project
+npx ts-node src/create-fhevm-example.ts my-${templateName.toLowerCase()} --template ${templateName}`;
+
     navigator.clipboard.writeText(command);
-    toast.success("Command copied to clipboard!", {
-      description: `Run this in your terminal to create the project.`,
+    toast.success("Full setup commands copied!", {
+      description: `Includes repo clone and project generation.`,
       icon: <Terminal className="w-4 h-4" />,
     });
   };
