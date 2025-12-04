@@ -111,38 +111,24 @@ echo -e "${GREEN}✓ Dependencies installed!${NC}"
 pause
 
 # ============================================
-# STEP 5: Start playground (in background)
+# STEP 5: Show Live Playground
 # ============================================
-show_step "STEP 5: Starting Web Playground"
+show_step "STEP 5: Exploring the Web Playground"
 
-# Clean and reinstall to avoid platform-specific issues
-echo -e "${YELLOW}Cleaning playground dependencies...${NC}"
-cd playground
-rm -rf node_modules .next
-npm install --silent
-
-echo -e "${BLUE}$ npm run dev${NC}"
-echo -e "${YELLOW}Starting Next.js server...${NC}"
-
-# Start in background
-npm run dev > /tmp/playground.log 2>&1 &
-PLAYGROUND_PID=$!
-
-# Wait for server to start
-echo -e "${YELLOW}Waiting for server to start...${NC}"
-sleep 8
-
-if ps -p $PLAYGROUND_PID > /dev/null; then
-    echo -e "${GREEN}✓ Playground running at http://localhost:3000${NC}"
-    echo ""
-    echo -e "${CYAN}🌐 Open http://localhost:3000 in your browser now!${NC}"
-    echo -e "${YELLOW}   (Show the FHE Simulator and template cards)${NC}"
-else
-    echo -e "${YELLOW}⚠️  Playground failed to start. Check /tmp/playground.log${NC}"
-    cat /tmp/playground.log
-fi
-
-cd ..
+echo -e "${CYAN}🌐 Opening the live playground in your browser...${NC}"
+echo ""
+echo -e "${BLUE}Live Demo: https://playground-beryl-two-88.vercel.app/${NC}"
+echo ""
+echo -e "${YELLOW}In your browser:${NC}"
+echo "  1. Visit the link above"
+echo "  2. Try the FHE Simulator (encrypt, compute, decrypt)"
+echo "  3. Scroll to 'Blind Auction' template card"
+echo "  4. Click 'Copy Command' button"
+echo "  5. See the toast notification"
+echo ""
+echo -e "${CYAN}💡 The playground is already deployed and running!${NC}"
+echo -e "${CYAN}   No local setup needed.${NC}"
+echo ""
 pause
 
 # ============================================
@@ -262,15 +248,12 @@ echo -e "${GREEN}║                                                   ║${NC}"
 echo -e "${GREEN}╚═══════════════════════════════════════════════════╝${NC}"
 echo ""
 echo -e "${CYAN}📦 Demo files location: $DEMO_DIR${NC}"
-echo -e "${CYAN}🌐 Playground: http://localhost:3000${NC}"
+echo -e "${CYAN}🌐 Live Playground: https://playground-beryl-two-88.vercel.app/${NC}"
 echo ""
 echo -e "${YELLOW}Don't forget to:${NC}"
 echo "  1. Stop screen recording"
-echo "  2. Show the playground in browser"
-echo "  3. Stop the playground server (kill $PLAYGROUND_PID)"
-echo ""
-echo -e "${BLUE}To stop the playground:${NC}"
-echo "  $ kill $PLAYGROUND_PID"
+echo "  2. Upload video to YouTube/Loom"
+echo "  3. Run ./add-video-link.sh to add the link to README"
 echo ""
 echo -e "${BLUE}To clean up demo files:${NC}"
 echo "  $ rm -rf $DEMO_DIR"
