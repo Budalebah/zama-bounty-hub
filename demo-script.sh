@@ -138,9 +138,38 @@ fi
 pause
 
 # ============================================
-# STEP 6: Generate example project
+# STEP 6: Show Playground and Copy Command
 # ============================================
-show_step "STEP 6: Generating Example Project"
+show_step "STEP 6: Using the Playground"
+
+echo -e "${CYAN}🌐 Now, in your browser:${NC}"
+echo "  1. Go to http://localhost:3000"
+echo "  2. Scroll to 'Blind Auction' template card"
+echo "  3. Click 'Copy Command' button"
+echo "  4. Come back to terminal"
+echo ""
+echo -e "${YELLOW}⚠️  The command will be in your clipboard!${NC}"
+pause
+
+# ============================================
+# STEP 7: Paste and run the copied command
+# ============================================
+show_step "STEP 7: Running Copied Command"
+
+echo -e "${CYAN}📋 Now paste the command from your clipboard:${NC}"
+echo -e "${BLUE}   (Press Cmd+V and then ENTER)${NC}"
+echo ""
+echo -e "${YELLOW}Expected command:${NC}"
+echo -e "${BLUE}# Clone the Zama FHEVM Example Hub${NC}"
+echo -e "${BLUE}git clone https://github.com/Budalebah/zama-bounty-hub.git${NC}"
+echo -e "${BLUE}cd zama-bounty-hub/automation${NC}"
+echo -e "${BLUE}npm install${NC}"
+echo -e "${BLUE}${NC}"
+echo -e "${BLUE}# Generate your project${NC}"
+echo -e "${BLUE}npx ts-node src/create-fhevm-example.ts my-blindauction --template FHEBlindAuction${NC}"
+echo ""
+echo -e "${YELLOW}⚠️  Since we already cloned, just run the generation part:${NC}"
+echo ""
 
 cd automation
 
@@ -154,7 +183,7 @@ echo ""
 npx ts-node src/create-fhevm-example.ts my-auction --template FHEBlindAuction
 
 echo ""
-echo -e "${GREEN}✓ Project 'my-auction' created successfully!${NC}"
+echo -e "${GREEN}✓ Project 'my-auction' created from playground command!${NC}"
 pause
 
 # ============================================
