@@ -33,6 +33,10 @@ Every example includes:
 - Usage examples and test patterns
 - Common pitfalls and solutions
 
+## 🎥 Demo Video
+
+[Watch the full demonstration](https://youtu.be/Sb7o6CVFSI8)
+
 ## 🎯 Quick Start
 
 ```bash
