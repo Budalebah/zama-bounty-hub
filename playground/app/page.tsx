@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Lock, Calculator, Scale, ShieldCheck, Key, Coins, Gavel, Vote, Download, Terminal, Play, Copy } from "lucide-react";
+import { Lock, Calculator, Scale, ShieldCheck, Key, Coins, Gavel, Vote, Download, Terminal, Play, Copy, AlertTriangle } from "lucide-react";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -14,6 +14,7 @@ const templates = [
   { id: 'fhevm-example-arithmetic', title: 'FHE Arithmetic', description: 'Perform encrypted addition and subtraction.', complexity: 'Basic', icon: Calculator, templateName: 'FHEArithmetic' },
   { id: 'fhevm-example-equality', title: 'FHE Equality', description: 'Check if two encrypted values are equal.', complexity: 'Basic', icon: Scale, templateName: 'FHEEquality' },
   { id: 'fhevm-example-access-control', title: 'Access Control', description: 'Manage permissions with FHE.allow.', complexity: 'Security', icon: ShieldCheck, templateName: 'FHEAccessControl' },
+  { id: 'fhevm-example-anti-patterns', title: 'Anti-Patterns', description: 'Common mistakes and how to avoid them.', complexity: 'Security', icon: AlertTriangle, templateName: 'FHEAntiPatterns' },
   { id: 'fhevm-example-reencryption', title: 'User Decryption', description: 'Users decrypt their own data (Re-encryption).', complexity: 'Decryption', icon: Key, templateName: 'FHEReencryption' },
   { id: 'fhevm-example-erc20', title: 'Confidential ERC20', description: 'Token with encrypted balances and transfers.', complexity: 'Advanced', icon: Coins, templateName: 'FHEERC20' },
   { id: 'fhevm-example-blind-auction', title: 'Blind Auction', description: 'Highest bid is secret until the end.', complexity: 'Advanced', icon: Gavel, templateName: 'FHEBlindAuction' },
