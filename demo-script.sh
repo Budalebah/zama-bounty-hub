@@ -37,10 +37,7 @@ echo -e "${BLUE}"
 cat << "EOF"
 ╔═══════════════════════════════════════════════════╗
 ║                                                   ║
-║   🎥 ZAMA FHEVM EXAMPLE HUB - DEMO SCRIPT        ║
-║                                                   ║
-║   This script will guide you through the demo    ║
-║   Perfect for screen recording!                  ║
+║   🎥 ZAMA FHEVM EXAMPLE HUB - DEMO               ║
 ║                                                   ║
 ╚═══════════════════════════════════════════════════╝
 EOF
@@ -48,7 +45,7 @@ echo -e "${NC}"
 
 echo -e "${GREEN}This script will:${NC}"
 echo "  1. Clone the repository"
-echo "  2. Install dependencies"
+echo "  2. Show the live playground"
 echo "  3. Generate a sample project"
 echo "  4. Run tests"
 echo "  5. Show documentation"
