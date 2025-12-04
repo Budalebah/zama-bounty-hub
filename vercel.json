@@ -1,5 +1,5 @@
 {
-    "buildCommand": "cd playground && npm install && npm rebuild lightningcss && npm run build",
+    "buildCommand": "cd playground && npm run build",
     "outputDirectory": "playground/.next",
-    "installCommand": "cd playground && npm install"
+    "installCommand": "cd playground && rm -rf node_modules package-lock.json && npm install --include=optional"
 }
