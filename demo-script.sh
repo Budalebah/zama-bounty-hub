@@ -115,6 +115,12 @@ pause
 # ============================================
 show_step "STEP 5: Starting Web Playground"
 
+# Clean and reinstall to avoid platform-specific issues
+echo -e "${YELLOW}Cleaning playground dependencies...${NC}"
+cd playground
+rm -rf node_modules .next
+npm install --silent
+
 echo -e "${BLUE}$ npm run dev${NC}"
 echo -e "${YELLOW}Starting Next.js server...${NC}"
 
@@ -124,7 +130,7 @@ PLAYGROUND_PID=$!
 
 # Wait for server to start
 echo -e "${YELLOW}Waiting for server to start...${NC}"
-sleep 5
+sleep 8
 
 if ps -p $PLAYGROUND_PID > /dev/null; then
     echo -e "${GREEN}✓ Playground running at http://localhost:3000${NC}"
@@ -133,8 +139,10 @@ if ps -p $PLAYGROUND_PID > /dev/null; then
     echo -e "${YELLOW}   (Show the FHE Simulator and template cards)${NC}"
 else
     echo -e "${YELLOW}⚠️  Playground failed to start. Check /tmp/playground.log${NC}"
+    cat /tmp/playground.log
 fi
 
+cd ..
 pause
 
 # ============================================
