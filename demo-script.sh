@@ -209,6 +209,12 @@ pause
 # ============================================
 show_step "STEP 8: Running Tests"
 
+# Ensure dependencies are installed
+if [ ! -d "node_modules" ]; then
+    echo -e "${YELLOW}Installing test dependencies...${NC}"
+    npm install --silent
+fi
+
 echo -e "${BLUE}$ npm test${NC}"
 echo ""
 
